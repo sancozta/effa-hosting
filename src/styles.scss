@@ -14,13 +14,12 @@ body *:not(i, mat-icon) {
     font-family: "Poppins", sans-serif !important;
 }
 
-// STYLES MODULE ADMIN
-// app-login,
-// app-dashboard {
-//     @import "./app/admin/shared/assets/scss/admin.scss";
-// }
+STYLES MODULE ADMIN
+mat-login,
+mat-dashboard {
+    @import "./app/admin/shared/assets/scss/admin.scss";
+}
 
-// STYLES MODULE PUBLIC
-// app-public {
-//     @import "./app/public/shared/assets/sass/public.scss";
-// }
+mat-public {
+    @import "./app/public/shared/assets/sass/public.scss";
+}
