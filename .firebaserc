@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "effa-ddd4c": {
+      "hosting": {
+        "hosting": [
+          "effa-ddd4c"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "effa-ddd4c"
+  }
+}

@@ -1,0 +1,48 @@
+# SEE HTTP://HELP.GITHUB.COM/IGNORE-FILES/ FOR MORE ABOUT IGNORING FILES.
+
+# COMPILED OUTPUT
+/dist
+/tmp
+/out-tsc
+/bazel-out
+/.angular
+
+# NODE
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDES AND EDITORS
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# VISUAL STUDIO CODE
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# MISCELLANEOUS
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+
+# SYSTEM FILES
+.DS_Store
+Thumbs.db
+
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json
