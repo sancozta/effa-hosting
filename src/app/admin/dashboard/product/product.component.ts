@@ -10,20 +10,20 @@ import { Product } from '../../../shared/models/product.model';
 import { ImgModel } from '../../../shared/models/img.model';
 
 @Component({
-  selector: 'product',
+  selector: 'mat-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent extends FireCrud<Product> implements OnInit {
 
-  object: Product = new Product();
+  override object: Product = new Product();
   categorys: Category[] = [];
 
   constructor(
-    public firebase: FirebaseService,
-    public utils: UtilsService,
-    public dialog: MatDialog,
-    public cdr: ChangeDetectorRef,
+    public override firebase: FirebaseService,
+    public override utils: UtilsService,
+    public override dialog: MatDialog,
+    public override cdr: ChangeDetectorRef,
   ) {
     super(
       firebase,
@@ -33,14 +33,14 @@ export class ProductComponent extends FireCrud<Product> implements OnInit {
     );
   }
 
-  reloadDataClear() {
+  override reloadDataClear() {
     this.firebase.getDocsProducts().subscribe((list) => this.list = list);
     this.firebase.getDocsCategorys().subscribe((categorys) => this.categorys = categorys);
     super.reloadDataClear();
   }
 
   isValid(product: Product): boolean {
-    return (product.title?.length > 0 && product.description?.length > 0);
+    return (product != null && !!product.title && !!product.description);
   }
 
   updateImgs(images: ImgModel[]) {

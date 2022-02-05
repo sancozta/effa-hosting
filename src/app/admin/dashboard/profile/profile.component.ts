@@ -12,7 +12,7 @@ import { User } from '../../../shared/models/user.model';
 })
 export class ProfileComponent implements OnInit {
 
-  loading = true;
+  loading: boolean = true;
   user: User = new User();
 
   constructor(
@@ -26,19 +26,23 @@ export class ProfileComponent implements OnInit {
   }
 
   reloadDataClear() {
-    this.firebase.data.subscribe((data) => {
-      this.user.uid = data.uid;
-      this.user.email = data.email;
-      this.user.verify = data.emailVerified;
-      this.firebase.getDocUser(this.user.uid).subscribe((datau) => {
-        this.user.name = datau.name;
-        this.user.cpf = datau.cpf;
-        this.user.phone = datau.phone;
-        this.loading = false;
-      }, (error) => {
-        console.log(error);
-        this.utils.snackBar('Error ao capturar dados do usuário!');
-      });
+    this.firebase.data.subscribe((data: any) => {
+      if (data != null && !!data.uid) {
+        this.user.uid = data.uid;
+        this.user.email = data.email;
+        this.user.verify = data.emailVerified;
+        this.firebase.getDocUser(this.user.uid ?? '').subscribe((log: User | null) => {
+          if (log != null) {
+            this.user.name = log.name;
+            this.user.cpf = log.cpf;
+            this.user.phone = log.phone;
+          }
+          this.loading = false;
+        }, (error) => {
+          console.log(error);
+          this.utils.snackBar('Error ao capturar dados do usuário!');
+        });
+      }
     }, (error) => {
       console.log(error);
       this.utils.snackBar('Error ao capturar dados do usuário SDK!');
@@ -46,7 +50,7 @@ export class ProfileComponent implements OnInit {
   }
 
   save() {
-    this.firebase.updateDoc('users', this.user.uid, this.user).then((data) => {
+    this.firebase.updateDoc('users', this.user.uid ?? '', this.user).then((data) => {
       this.utils.snackBar('Informações atualizadas com sucesso!');
       this.reloadDataClear();
     }).catch((error) => {

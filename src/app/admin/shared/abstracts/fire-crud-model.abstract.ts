@@ -1,4 +1,4 @@
 export interface FireCrudModelAbstract {
-  uid: string;
+  uid?: string;
   collection(): string;
 }

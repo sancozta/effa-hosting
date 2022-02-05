@@ -1,26 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { FirebaseService } from '../../../shared/services/firebase.service';
 import { UtilsService } from '../../../shared/services/utils.service';
 
 @Component({
-  selector: 'app-notification',
+  selector: 'mat-notification',
   templateUrl: './notification.component.html',
-  styleUrls: ['./notification.component.scss']
+  styleUrls: ['./notification.component.scss'],
 })
-export class NotificationComponent implements OnInit {
+export class NotificationComponent {
 
-  title: string;
-  body: string;
+  title: string = '';
+  body: string = '';
 
   constructor(
     public firebase: FirebaseService,
     public utils: UtilsService,
     public http: HttpClient
   ) { }
-
-  ngOnInit(): void { }
 
   sendAll() {
     if (this.title && this.body) {
@@ -38,7 +36,7 @@ export class NotificationComponent implements OnInit {
           clickaction: 'FLUTTER_NOTIFICATION_CLICK'
         },
         to: 'topics/all'
-      }, { headers }).subscribe(data => {
+      }, { headers }).subscribe((data: any) => {
         console.log(data);
         if (data['success'] > 0) {
           this.utils.snackBar('A Menssagem foi enviada com sucesso!');

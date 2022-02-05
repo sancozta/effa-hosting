@@ -14,13 +14,13 @@ import { User } from '../../../shared/models/user.model';
 })
 export class UsersComponent extends FireCrud<User> implements OnInit {
 
-  object: User = new User();
+  override object: User = new User();
 
   constructor(
-    public firebase: FirebaseService,
-    public utils: UtilsService,
-    public dialog: MatDialog,
-    public cdr: ChangeDetectorRef,
+    public override firebase: FirebaseService,
+    public override utils: UtilsService,
+    public override dialog: MatDialog,
+    public override cdr: ChangeDetectorRef,
   ) {
     super(
       firebase,
@@ -30,12 +30,12 @@ export class UsersComponent extends FireCrud<User> implements OnInit {
     );
   }
 
-  reloadDataClear() {
+  override reloadDataClear() {
     this.firebase.getDocsUsers().subscribe((list) => this.list = list);
     super.reloadDataClear();
   }
 
   isValid(user: User): boolean {
-    return (user.name?.length > 0 && user.email?.length > 0);
+    return user != null && !!user.name && !!user.email;
   }
 }

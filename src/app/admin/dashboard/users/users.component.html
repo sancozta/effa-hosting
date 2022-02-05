@@ -60,8 +60,7 @@
       <div class="col">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Telefone</mat-label>
-          <input required autofocus matInput placeholder="Digite o telefone..." id="phone" [(ngModel)]="object.phone"
-            [dropSpecialCharacters]="false" mask="(00) 00000-0000">
+          <input required autofocus matInput placeholder="Digite o telefone..." id="phone" [(ngModel)]="object.phone">
           <mat-hint class="hint-invalid" *ngIf="submitted && !object.phone">Telefone é obrigatório.</mat-hint>
         </mat-form-field>
       </div>
@@ -71,8 +70,7 @@
       <div class="col">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>CPF</mat-label>
-          <input required autofocus matInput placeholder="Digite o cpf..." id="cpf" [(ngModel)]="object.cpf"
-            [dropSpecialCharacters]="false" mask="000.000.000-00">
+          <input required autofocus matInput placeholder="Digite o cpf..." id="cpf" [(ngModel)]="object.cpf">
           <mat-hint class="hint-invalid" *ngIf="submitted && !object.cpf">Cpf é obrigatório.</mat-hint>
         </mat-form-field>
       </div>

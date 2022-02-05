@@ -8,19 +8,19 @@ import { FireCrud } from '../../shared/abstracts/fire-crud.abstract';
 import { Category } from '../../../shared/models/category.model';
 
 @Component({
-  selector: 'app-category',
+  selector: 'mat-category',
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss'],
 })
 export class CategoryComponent extends FireCrud<Category> implements OnInit {
 
-  object: Category = new Category();
+  override object: Category = new Category();
 
   constructor(
-    public firebase: FirebaseService,
-    public utils: UtilsService,
-    public dialog: MatDialog,
-    public cdr: ChangeDetectorRef,
+    public override firebase: FirebaseService,
+    public override utils: UtilsService,
+    public override dialog: MatDialog,
+    public override cdr: ChangeDetectorRef,
   ) {
     super(
       firebase,
@@ -30,12 +30,12 @@ export class CategoryComponent extends FireCrud<Category> implements OnInit {
     );
   }
 
-  reloadDataClear() {
+  override reloadDataClear() {
     this.firebase.getDocsCategorys().subscribe((list) => this.list = list);
     super.reloadDataClear();
   }
 
   isValid(category: Category): boolean {
-    return (category.title?.length > 0 && category.key?.length > 0);
+    return category != null && !!category.title && !!category.key;
   }
 }

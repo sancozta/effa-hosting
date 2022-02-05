@@ -105,7 +105,7 @@ export abstract class FireCrud<T extends FireCrudModelAbstract> implements OnIni
     });
   }
 
-  findIndexById(id: string): number {
+  findIndexById(id: string | undefined): number {
     let index = -1;
     for (let i = 0; i < this.list.length; i++) {
       if (this.list[i].uid === id) {

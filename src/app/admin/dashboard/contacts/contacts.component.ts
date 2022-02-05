@@ -6,14 +6,14 @@ import { UtilsService } from '../../../shared/services/utils.service';
 import { Contact } from '../../../shared/models/contact.model';
 
 @Component({
-  selector: 'app-contacts',
+  selector: 'mat-contacts',
   templateUrl: './contacts.component.html',
   styleUrls: ['./contacts.component.scss']
 })
 export class ContactsComponent implements OnInit {
 
-  contact: Contact;
-  loading = true;
+  contact: Contact | null | undefined = null;
+  loading: boolean = true;
 
   constructor(
     public firebase: FirebaseService,

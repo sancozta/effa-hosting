@@ -1,10 +1,12 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS_FACTORY } from '@angular/material/snack-bar';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { LazyLoadImageModule, LAZYLOAD_IMAGE_HOOKS } from 'ng-lazyload-image';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatRadioModule } from '@angular/material/radio';
@@ -13,21 +15,20 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
-
-import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { HttpClientModule } from '@angular/common/http';
+
+import { LazyLoadImageHooks } from './hooks/lazy-load-image.hooks';
+import { DropzoneDirective } from './directives/dropzone.directive';
 
 @NgModule({
   declarations: [
-    NotfoundComponent,
+    DropzoneDirective,
   ],
   exports: [
-    NotfoundComponent,
-  ],
-  imports: [
+    DropzoneDirective,
     HttpClientModule,
-    FormsModule,
     CommonModule,
+    FormsModule,
     RouterModule,
     MatDialogModule,
     MatSnackBarModule,
@@ -39,6 +40,24 @@ import { HttpClientModule } from '@angular/common/http';
     MatSelectModule,
     MatRadioModule,
     MatCardModule,
+    LazyLoadImageModule,
+  ],
+  imports: [
+    HttpClientModule,
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatTooltipModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCardModule,
+    LazyLoadImageModule,
   ],
   providers: [
     {
@@ -52,6 +71,10 @@ import { HttpClientModule } from '@angular/common/http';
       useValue: {
         duration: 3000,
       },
+    },
+    {
+      provide: LAZYLOAD_IMAGE_HOOKS,
+      useClass: LazyLoadImageHooks,
     },
   ],
   schemas: [

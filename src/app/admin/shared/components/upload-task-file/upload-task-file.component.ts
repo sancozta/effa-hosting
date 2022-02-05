@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
-import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/compat/storage';
 
 import { ImgModel } from '../../../../shared/models/img.model';
 
@@ -10,22 +10,21 @@ import { ImgModel } from '../../../../shared/models/img.model';
 })
 export class UploadTaskFileComponent implements OnInit {
 
-  @Input() file: File = null;
+  @Input() file: File | null = null;
 
   @Output() finalize: EventEmitter<ImgModel> = new EventEmitter<ImgModel>();
 
-  @Output() complete: EventEmitter<File> = new EventEmitter<File>();
+  @Output() complete: EventEmitter<File | null> = new EventEmitter<File | null>();
 
-  task: AngularFireUploadTask;
+  task: AngularFireUploadTask | undefined;
+
   percentage: number = 0;
 
   constructor(
     private storage: AngularFireStorage,
     private cdr: ChangeDetectorRef,
   ) {
-    setInterval(() => {
-      this.cdr.markForCheck();
-    }, 50);
+    setInterval(() => this.cdr.markForCheck(), 50);
   }
 
   ngOnInit() {
@@ -33,12 +32,12 @@ export class UploadTaskFileComponent implements OnInit {
   }
 
   startUpload() {
-    const path = `uploads/${Date.now()}.${this.file.name.split('.').pop()}`;
+    const path = `uploads/${Date.now()}.${this.file?.name.split('.').pop()}`;
 
     this.task = this.storage.upload(path, this.file);
 
     this.task.percentageChanges().subscribe((p) => {
-      this.percentage = p;
+      this.percentage = p != undefined ? p : 0;
     });
 
     this.task.then(async (data) => {

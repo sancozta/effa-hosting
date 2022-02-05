@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { Observable, ReplaySubject } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import firebase from 'firebase/app';
+import firebase from 'firebase/compat/app';
 
 import { Testimonial } from '../models/testimonial.model';
 import { Category } from '../models/category.model';
@@ -15,7 +15,7 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 export class FirebaseService {
-  data: Observable<firebase.User>;
+  data: Observable<firebase.User | null>;
   user?: User;
   admin?: boolean = false;
 
@@ -26,35 +26,16 @@ export class FirebaseService {
     this.data = fireauth.authState;
   }
 
-  bindChangeStateAuth(authGuardSubject: ReplaySubject<firebase.User>): void {
-    this.fireauth.onAuthStateChanged(authGuardSubject);
-  }
-
-  async signup(email: string, password: string): Promise<boolean> {
-    return this.fireauth.createUserWithEmailAndPassword(email, password)
-      .then(value => {
-        console.log('Usuário Criado com Sucesso! ', value);
-        return true;
-      });
-  }
-
-  async login(email: string, password: string): Promise<boolean> {
-    return this.fireauth.signInWithEmailAndPassword(email, password)
-      .then(value => {
-        console.log('Login Realiaddo com Sucesso! ', value);
-        return true;
-      });
-  }
-
-  async loginWithGoogle(): Promise<firebase.User> {
-    const user = new firebase.auth.GoogleAuthProvider();
-    return this.fireauth.signInWithPopup(user)
-      .then((data: firebase.auth.UserCredential) => {
-        if (!data.user) {
-          return null
-        }
-        return data.user;
-      });
+  loginWithGoogle(): Promise<firebase.User | null> {
+    return new Promise((resolve) => {
+      this.fireauth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+        .then((data: firebase.auth.UserCredential) => {
+          if (!data.user) {
+            resolve(null);
+          }
+          resolve(data.user);
+        });
+    })
   }
 
   logout(): void {
@@ -82,12 +63,20 @@ export class FirebaseService {
     return this.firestore.collection<Testimonial>('testimonials').get().pipe(map((data) => data.docs.map((object) => object.data())));
   }
 
-  getDocContacts(): Observable<Contact> {
-    return this.firestore.collection('info').doc<Contact>('contacts').get().pipe(map((data) => data.exists ? data.data() : null));
+  getDocContacts(): Observable<Contact | null> {
+    return this.firestore.collection('info').doc<Contact>('contacts').get().pipe(map((data) => this.returnObjectOrNull(data)));
   }
 
-  getDocUser(uid: string): Observable<User> {
-    return this.firestore.collection('users').doc<User>(uid).get().pipe(map((data) => data.exists ? data.data() : null));
+  getDocUser(uid: string): Observable<User | null> {
+    return this.firestore.collection('users').doc<User>(uid).get().pipe(map((data) => this.returnObjectOrNull(data)));
+  }
+
+  returnObjectOrNull<T>(data: firebase.firestore.DocumentSnapshot<T>): T | null {
+    return data.exists ? this.returnObjectOrNullOfUndefind(data.data()) : null;
+  }
+
+  returnObjectOrNullOfUndefind<T>(data: any): T | null {
+    return !!data ? data : null;
   }
 
   setDoc(collection: string, uid: string, object: any): Promise<void> {

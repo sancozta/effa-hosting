@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 
 import { provideAnalytics, getAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
@@ -16,12 +15,12 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 
-import { NotfoundComponent } from './shared/pages/notfound/notfound.component';
+import { AdminModule } from './admin/admin.module';
+import { PublicModule } from './public/public.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NotfoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +34,8 @@ import { NotfoundComponent } from './shared/pages/notfound/notfound.component';
     providePerformance(() => getPerformance()),
     provideRemoteConfig(() => getRemoteConfig()),
     provideStorage(() => getStorage()),
+    AdminModule,
+    PublicModule,
   ],
   providers: [
     ScreenTrackingService,

@@ -56,11 +56,13 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.firebase.data.subscribe((u) => {
-      this.firebase.getDocUser(u.uid).subscribe((doc: User) => {
-        this.firebase.user = doc;
-        this.firebase.admin = doc.admin;
-        this.authorized = !!doc.admin;
-        this.loading = false;
+      this.firebase.getDocUser(u ? u.uid : '').subscribe((doc: User | undefined | null) => {
+        if(doc) {
+          this.firebase.user = doc;
+          this.firebase.admin = doc.admin;
+          this.authorized = !!doc.admin;
+          this.loading = false;
+        }
       });
     });
   }
