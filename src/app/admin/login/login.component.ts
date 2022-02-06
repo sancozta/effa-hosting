@@ -12,8 +12,7 @@ import { User } from '../../shared/models/user.model';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  email: string = '';
-  password: string = '';
+
   loading: boolean = false;
 
   constructor(
@@ -31,10 +30,6 @@ export class LoginComponent implements OnInit {
         this.loading = false;
       }
     });
-  }
-
-  enabledLoginOrSignup(): boolean {
-    return !this.email || !this.password;
   }
 
   loginWithGoogle() {
@@ -60,10 +55,5 @@ export class LoginComponent implements OnInit {
       .catch((error) => {
         this.utils.snackBar(error.message);
       });
-    this.clearFields();
-  }
-
-  clearFields() {
-    this.email = this.password = '';
   }
 }

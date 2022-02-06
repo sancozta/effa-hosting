@@ -63,12 +63,18 @@ export class FirebaseService {
     return this.firestore.collection<Testimonial>('testimonials').get().pipe(map((data) => data.docs.map((object) => object.data())));
   }
 
-  getDocContacts(): Observable<Contact | null> {
-    return this.firestore.collection('info').doc<Contact>('contacts').get().pipe(map((data) => this.returnObjectOrNull(data)));
+  getDocContacts(): Observable<Contact> {
+    return this.firestore.collection('info').doc<Contact>('contacts').get().pipe(map((data) => {
+      const object = this.returnObjectOrNull(data);
+      return object != null ? object : new Contact();
+    }));
   }
 
-  getDocUser(uid: string): Observable<User | null> {
-    return this.firestore.collection('users').doc<User>(uid).get().pipe(map((data) => this.returnObjectOrNull(data)));
+  getDocUser(uid: string): Observable<User> {
+    return this.firestore.collection('users').doc<User>(uid).get().pipe(map((data) => {
+      const object = this.returnObjectOrNull(data);
+      return object != null ? object : new User();
+    }));
   }
 
   returnObjectOrNull<T>(data: firebase.firestore.DocumentSnapshot<T>): T | null {

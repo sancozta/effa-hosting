@@ -16,4 +16,8 @@ export class User implements FireCrudModelAbstract {
   collection(): string {
     return 'users';
   }
+  
+  static collection(): string {
+    return this.collection();
+  }
 }

@@ -1,11 +1,11 @@
 <div class="content-menu-slide">
   <a class="box-profile" (click)="navigate(['/admin/profile'])" routerLink="/admin/profile" routerLinkActive="active">
     <div class="profile-img">
-      <span>{{ getFisrtCharEmail(user?.email) }}</span>
+      <span>{{ getFisrtCharEmail(getEmail(user)) }}</span>
     </div>
     <div class="profile-text">
-      <span class="profile-text-title">{{ getFisrtPartEmail(user?.email) }}</span>
-      <span class="profile-text-subtitle">{{ user?.email }}</span>
+      <span class="profile-text-title">{{ getFisrtPartEmail(getEmail(user)) }}</span>
+      <span class="profile-text-subtitle">{{ getEmail(user) }}</span>
     </div>
   </a>
   <div class="box-menu-item box-items">

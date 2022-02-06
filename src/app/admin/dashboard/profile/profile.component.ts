@@ -6,7 +6,7 @@ import { UtilsService } from '../../../shared/services/utils.service';
 import { User } from '../../../shared/models/user.model';
 
 @Component({
-  selector: 'app-profile',
+  selector: 'mat-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })

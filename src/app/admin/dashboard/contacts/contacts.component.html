@@ -1,4 +1,4 @@
-<app-content-list-form [enableForm]="false">
+<mat-content-list-form [enableForm]="false">
 
   <div slot="header">
 
@@ -28,7 +28,7 @@
               <mat-label>Email</mat-label>
               <input required autofocus matInput placeholder="Digite seu email..." id="email"
                 [(ngModel)]="contact.email">
-              <mat-hint class="hint-invalid" *ngIf="!contact.email">Email é obrigatório.</mat-hint>
+              <mat-hint class="hint-invalid" *ngIf="!contact?.email">Email é obrigatório.</mat-hint>
             </mat-form-field>
           </div>
           <div class="col">
@@ -36,7 +36,7 @@
               <mat-label>Telefone</mat-label>
               <input required autofocus matInput placeholder="Digite seu telefone..." id="phone"
                 [(ngModel)]="contact.phone" mask="(00) 00000-0000">
-              <mat-hint class="hint-invalid" *ngIf="!contact.phone">Telefone é obrigatório.</mat-hint>
+              <mat-hint class="hint-invalid" *ngIf="!contact?.phone">Telefone é obrigatório.</mat-hint>
             </mat-form-field>
           </div>
         </div>
@@ -47,7 +47,7 @@
               <mat-label>Endereço</mat-label>
               <input required autofocus matInput placeholder="Digite seu Endereço..." id="address"
                 [(ngModel)]="contact.address">
-              <mat-hint class="hint-invalid" *ngIf="!contact.address">Endereço é obrigatório.</mat-hint>
+              <mat-hint class="hint-invalid" *ngIf="!contact?.address">Endereço é obrigatório.</mat-hint>
             </mat-form-field>
           </div>
           <div class="col">
@@ -55,7 +55,7 @@
               <mat-label>Instagram</mat-label>
               <input required autofocus matInput placeholder="Digite seu nome..." id="instagram"
                 [(ngModel)]="contact.instagram">
-              <mat-hint class="hint-invalid" *ngIf="!contact.instagram">Instagram é obrigatório.</mat-hint>
+              <mat-hint class="hint-invalid" *ngIf="!contact?.instagram">Instagram é obrigatório.</mat-hint>
             </mat-form-field>
           </div>
         </div>
@@ -66,7 +66,7 @@
               <mat-label>Facebook</mat-label>
               <input required autofocus matInput placeholder="Digite seu Facebook..." id="facebook"
                 [(ngModel)]="contact.facebook">
-              <mat-hint class="hint-invalid" *ngIf="!contact.facebook">Facebook é obrigatório.</mat-hint>
+              <mat-hint class="hint-invalid" *ngIf="!contact?.facebook">Facebook é obrigatório.</mat-hint>
             </mat-form-field>
           </div>
           <div class="col">
@@ -74,7 +74,7 @@
               <mat-label>Twitter</mat-label>
               <input required autofocus matInput placeholder="Digite seu Twitter..." id="twitter"
                 [(ngModel)]="contact.twitter">
-              <mat-hint class="hint-invalid" *ngIf="!contact.twitter">Twitter é obrigatório.</mat-hint>
+              <mat-hint class="hint-invalid" *ngIf="!contact?.twitter">Twitter é obrigatório.</mat-hint>
             </mat-form-field>
           </div>
         </div>
@@ -85,14 +85,14 @@
               <mat-label>Youtube</mat-label>
               <input required autofocus matInput placeholder="Digite seu Youtube..." id="youtube"
                 [(ngModel)]="contact.youtube">
-              <mat-hint class="hint-invalid" *ngIf="!contact.youtube">Youtube é obrigatório.</mat-hint>
+              <mat-hint class="hint-invalid" *ngIf="!contact?.youtube">Youtube é obrigatório.</mat-hint>
             </mat-form-field>
           </div>
           <div class="col">
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>Link</mat-label>
               <input required autofocus matInput placeholder="Digite seu Link..." id="link" [(ngModel)]="contact.link">
-              <mat-hint class="hint-invalid" *ngIf="!contact.link">Link é obrigatório.</mat-hint>
+              <mat-hint class="hint-invalid" *ngIf="!contact?.link">Link é obrigatório.</mat-hint>
             </mat-form-field>
           </div>
         </div>
@@ -108,4 +108,4 @@
 
   </div>
 
-</app-content-list-form>
+</mat-content-list-form>

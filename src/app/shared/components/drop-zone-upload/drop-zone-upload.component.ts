@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, Input, Output, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
 
-import { ImgModel } from '../../../../shared/models/img.model';
+import { ImgModel } from './../../models/img.model';
 
 @Component({
   selector: 'drop-zone-upload',
@@ -9,14 +9,14 @@ import { ImgModel } from '../../../../shared/models/img.model';
 })
 export class DropZoneUploadComponent implements OnInit, OnChanges {
 
-  @Input() uid: string;
+  @Input() uid: string = '';
 
   @Input() images: ImgModel[] = [];
 
   @Output() update: EventEmitter<ImgModel[]> = new EventEmitter<ImgModel[]>();
 
   files: File[] = [];
-  isHovering: boolean;
+  isHovering: boolean = false;
   placeholder: string = 'https://via.placeholder.com/500x250?text=Carregando...';
 
   constructor(
@@ -30,7 +30,7 @@ export class DropZoneUploadComponent implements OnInit, OnChanges {
   ngOnInit(): void { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.uid && changes.uid.currentValue !== changes.uid.previousValue && (changes.images.currentValue === undefined || changes.images.currentValue === null)) {
+    if (changes['uid'] && changes['uid'].currentValue !== changes['uid'].previousValue && (changes['images'].currentValue === undefined || changes['images'].currentValue === null)) {
       this.images = [];
     }
     this.update.emit(this.images);
@@ -42,18 +42,24 @@ export class DropZoneUploadComponent implements OnInit, OnChanges {
   }
 
   onDrop(files: FileList) {
-    for (let i = 0; i < files.length; i++) {
-      this.files.push(files.item(i));
-    }
+    if (files != null)
+      for (let i = 0; i < files.length; i++) {
+        const file = files.item(i);
+        if (file != null) {
+          this.files.push(file);
+        }
+      }
     this.cdr.detectChanges();
   }
 
-  onRemove(file: File) {
-    const i = this.files.indexOf(file);
-    if (i !== -1) {
-      this.files.splice(i, 1);
+  onRemove(file: File | null) {
+    if(file != null) {
+      const i = this.files.indexOf(file);
+      if (i !== -1) {
+        this.files.splice(i, 1);
+      }
+      this.cdr.detectChanges();
     }
-    this.cdr.detectChanges();
   }
 
   onAdd(file: ImgModel) {

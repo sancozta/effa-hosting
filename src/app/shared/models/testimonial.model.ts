@@ -9,4 +9,8 @@ export class Testimonial implements FireCrudModelAbstract {
   collection(): string {
     return 'testimonials';
   }
+
+  static collection(): string {
+    return this.collection();
+  }
 }

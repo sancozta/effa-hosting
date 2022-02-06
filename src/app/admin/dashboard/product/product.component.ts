@@ -16,7 +16,7 @@ import { ImgModel } from '../../../shared/models/img.model';
 })
 export class ProductComponent extends FireCrud<Product> implements OnInit {
 
-  override object: Product = new Product();
+  override object: Product = <Product>{};
   categorys: Category[] = [];
 
   constructor(

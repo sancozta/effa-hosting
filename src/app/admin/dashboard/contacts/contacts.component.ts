@@ -12,7 +12,7 @@ import { Contact } from '../../../shared/models/contact.model';
 })
 export class ContactsComponent implements OnInit {
 
-  contact: Contact | null | undefined = null;
+  contact: Contact = <Contact>{};
   loading: boolean = true;
 
   constructor(

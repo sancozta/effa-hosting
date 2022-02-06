@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/compat/storage';
 
-import { ImgModel } from '../../../../shared/models/img.model';
+import { ImgModel } from './../../models/img.model';
 
 @Component({
   selector: 'upload-task-file',

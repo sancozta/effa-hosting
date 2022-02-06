@@ -6,7 +6,7 @@ import { Category } from '../../../shared/models/category.model';
 import { User } from '../../../shared/models/user.model';
 
 @Component({
-  selector: 'app-report',
+  selector: 'mat-report',
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.scss']
 })
@@ -21,8 +21,8 @@ export class ReportComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.firebase.getCountDocs(new Product().collection()).subscribe((count) => this.countProducts = count);
-    this.firebase.getCountDocs(new Category().collection()).subscribe((count) => this.countCategorys = count);
-    this.firebase.getCountDocs(new User().collection()).subscribe((count) => this.countUsers = count);
+    this.firebase.getCountDocs(Product.collection()).subscribe((count) => this.countProducts = count);
+    this.firebase.getCountDocs(Category.collection()).subscribe((count) => this.countCategorys = count);
+    this.firebase.getCountDocs(User.collection()).subscribe((count) => this.countUsers = count);
   }
 }

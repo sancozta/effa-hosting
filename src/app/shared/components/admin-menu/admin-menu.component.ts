@@ -1,18 +1,18 @@
 import { Component, EventEmitter, Input, OnInit, Output, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
-import firebase from 'firebase/app';
+import firebase from 'firebase/compat/app';
 
-import { MenuModel } from '../../../../shared/models/menu.model';
-import { UtilsService } from '../../../../shared/services/utils.service';
+import { MenuModel } from './../../models/menu.model';
+import { UtilsService } from './../../services/utils.service';
 
 @Component({
-  selector: 'app-admin-menu',
+  selector: 'mat-admin-menu',
   templateUrl: './admin-menu.component.html',
   styleUrls: ['./admin-menu.component.scss']
 })
 export class AdminMenuComponent implements OnInit {
 
-  @Input() user: firebase.User;
+  @Input() user: firebase.User | null = <firebase.User>{};
   @Input() items: MenuModel[] = [];
 
   @Output() signout: EventEmitter<any> = new EventEmitter<any>();
@@ -27,6 +27,10 @@ export class AdminMenuComponent implements OnInit {
 
   navigate(commands: any[]): void {
     this.ngZone.run(() => this.router.navigate(commands)).then();
+  }
+
+  getEmail(user: firebase.User | null): string {
+    return user != null && user.email != null ? user.email : '';
   }
 
   getFisrtCharEmail(text: string): string {

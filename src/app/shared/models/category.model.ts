@@ -12,4 +12,8 @@ export class Category implements FireCrudModelAbstract {
   collection(): string {
     return 'categorys';
   }
+
+  static collection(): string {
+    return this.collection();
+  }
 }

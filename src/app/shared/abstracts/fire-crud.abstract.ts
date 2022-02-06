@@ -1,5 +1,6 @@
-import { OnInit, ChangeDetectorRef } from '@angular/core';
+import { OnInit, ChangeDetectorRef, Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import * as _ from 'lodash';
 
 import { FirebaseService } from '../services/firebase.service';
 import { UtilsService } from '../services/utils.service';
@@ -7,6 +8,9 @@ import { UtilsService } from '../services/utils.service';
 import { FireCrudModelAbstract } from './fire-crud-model.abstract';
 import { ModalContentComponent } from '../components/modal-content/modal-content.component';
 
+@Component({
+  template: '',
+})
 export abstract class FireCrud<T extends FireCrudModelAbstract> implements OnInit {
 
   object: T = <T>{};
@@ -28,21 +32,17 @@ export abstract class FireCrud<T extends FireCrudModelAbstract> implements OnIni
   reloadDataClear(): void {
     this.submitted = false;
     this.form = false;
-    // Object.keys(this.object).forEach((k) => (typeof k !== 'function') ? this.object[k] = null : '');
+    this.object = <T>{};
   }
 
   openNew(): void {
-    // Object.keys(this.object).forEach((k) => (typeof k !== 'function') ? this.object[k] = null : '');
+    this.object = <T>{};
     this.submitted = false;
     this.form = true;
   }
 
   editObject(object: T): void {
-    // Object.keys(this.object).forEach((k) => {
-    //   if (k in object) {
-    //     this.object[k] = object[k];
-    //   }
-    // });
+    this.object = _.merge(this.object, object);
     this.form = true;
   }
 
