@@ -1,4 +1,4 @@
-import { FireCrudModelAbstract } from '../../admin/shared/abstracts/fire-crud-model.abstract';
+import { FireCrudModelAbstract } from '../abstracts/fire-crud-model.abstract';
 import { ImgModel } from './img.model';
 
 export class Product implements FireCrudModelAbstract {

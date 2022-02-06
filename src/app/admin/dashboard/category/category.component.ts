@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { FirebaseService } from '../../../shared/services/firebase.service';
 import { UtilsService } from '../../../shared/services/utils.service';
 
-import { FireCrud } from '../../shared/abstracts/fire-crud.abstract';
+import { FireCrud } from '../../../shared/abstracts/fire-crud.abstract';
 import { Category } from '../../../shared/models/category.model';
 
 @Component({

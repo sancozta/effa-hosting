@@ -1,11 +1,11 @@
 import { OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
-import { FirebaseService } from '../../../shared/services/firebase.service';
-import { UtilsService } from '../../../shared/services/utils.service';
+import { FirebaseService } from '../services/firebase.service';
+import { UtilsService } from '../services/utils.service';
 
 import { FireCrudModelAbstract } from './fire-crud-model.abstract';
-import { ModalContentComponent } from './../components/modal-content/modal-content.component';
+import { ModalContentComponent } from '../components/modal-content/modal-content.component';
 
 export abstract class FireCrud<T extends FireCrudModelAbstract> implements OnInit {
 

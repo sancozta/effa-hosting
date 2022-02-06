@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { DialogModel } from '../../../../shared/models/dialog.model';
+import { DialogModel } from '../../models/dialog.model';
 
 @Component({
   selector: 'app-modal-content',

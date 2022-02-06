@@ -1,4 +1,4 @@
-import { FireCrudModelAbstract } from '../../admin/shared/abstracts/fire-crud-model.abstract';
+import { FireCrudModelAbstract } from '../abstracts/fire-crud-model.abstract';
 
 export class User implements FireCrudModelAbstract {
   constructor(
