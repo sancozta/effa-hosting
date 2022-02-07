@@ -16,7 +16,7 @@ export class ProfileComponent implements OnInit {
   user: User = new User();
 
   constructor(
-    public firebase: FirebaseService,
+    private firebase: FirebaseService,
     public utils: UtilsService,
     private ngZone: NgZone,
   ) { }

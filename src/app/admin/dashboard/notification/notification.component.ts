@@ -15,7 +15,7 @@ export class NotificationComponent {
   body: string = '';
 
   constructor(
-    public firebase: FirebaseService,
+    private firebase: FirebaseService,
     public utils: UtilsService,
     public http: HttpClient
   ) { }

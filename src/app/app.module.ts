@@ -1,17 +1,17 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './app.routing.module';
 
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 
 import { provideAnalytics, getAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
-import { provideRemoteConfig, getRemoteConfig } from '@angular/fire/remote-config';
-import { providePerformance, getPerformance } from '@angular/fire/performance';
+import { LANGUAGE_CODE, USE_DEVICE_LANGUAGE, SETTINGS as AUTH_SETTINGS } from '@angular/fire/compat/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
-import { provideFunctions, getFunctions } from '@angular/fire/functions';
 import { provideMessaging, getMessaging } from '@angular/fire/messaging';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 
@@ -27,21 +27,14 @@ import { ProductComponent } from './admin/dashboard/product/product.component';
 import { ProfileComponent } from './admin/dashboard/profile/profile.component';
 import { ReportComponent } from './admin/dashboard/report/report.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { UsersComponent } from './admin/dashboard/users/users.component';
+import { UsersComponent } from "./admin/dashboard/users/users.component";
 import { LoginComponent } from './admin/login/login.component';
 
 import { SharedModule } from './shared/shared.module';
-import { FirebaseService } from './shared/services/firebase.service';
-import { UtilsService } from './shared/services/utils.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdminMenuComponent,
-    ContentListFormComponent,
-    ModalContentComponent,
-    DropZoneUploadComponent,
-    UploadTaskFileComponent,
     LoginComponent,
     DashboardComponent,
     ReportComponent,
@@ -51,20 +44,24 @@ import { UtilsService } from './shared/services/utils.service';
     ProfileComponent,
     ContactsComponent,
     NotificationComponent,
+    AdminMenuComponent,
+    ContentListFormComponent,
+    ModalContentComponent,
+    DropZoneUploadComponent,
+    UploadTaskFileComponent,
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAnalytics(() => getAnalytics()),
-    provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    provideFunctions(() => getFunctions()),
     provideMessaging(() => getMessaging()),
-    providePerformance(() => getPerformance()),
-    provideRemoteConfig(() => getRemoteConfig()),
+    provideDatabase(() => getDatabase()),
     provideStorage(() => getStorage()),
+    provideAuth(() => getAuth()),
   ],
   entryComponents: [
     ModalContentComponent,
@@ -72,8 +69,9 @@ import { UtilsService } from './shared/services/utils.service';
   providers: [
     ScreenTrackingService,
     UserTrackingService,
-    FirebaseService,
-    UtilsService,
+    { provide: AUTH_SETTINGS, useValue: { appVerificationDisabledForTesting: true } },
+    { provide: USE_DEVICE_LANGUAGE, useValue: true },
+    { provide: LANGUAGE_CODE, useValue: 'pt-BR' },
   ],
   bootstrap: [
     AppComponent,
