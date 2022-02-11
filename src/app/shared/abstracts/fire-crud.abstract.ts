@@ -1,4 +1,4 @@
-import { OnInit, ChangeDetectorRef, Component } from '@angular/core';
+import { OnInit, ChangeDetectorRef, Component, Inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import * as _ from 'lodash';
 
@@ -23,6 +23,7 @@ export abstract class FireCrud<T extends FireCrudModelAbstract> implements OnIni
     public utils: UtilsService,
     public dialog: MatDialog,
     public cdr: ChangeDetectorRef,
+    @Inject('collection') public collection: string,
   ) { }
 
   ngOnInit(): void {
@@ -42,7 +43,10 @@ export abstract class FireCrud<T extends FireCrudModelAbstract> implements OnIni
   }
 
   editObject(object: T): void {
+    console.log(`Object => `, this.collection);
+    // this.object = Object.assign(this.object, object);
     this.object = _.merge(this.object, object);
+    console.log(`Object => `, this.object);
     this.form = true;
   }
 
@@ -55,9 +59,10 @@ export abstract class FireCrud<T extends FireCrudModelAbstract> implements OnIni
 
   saveObject(): void {
     this.submitted = true;
+    console.log(`Collection => `, this.collection)
     if (this.isValid(this.object)) {
       if (this.object.uid) {
-        this.firebase.updateDoc(this.object.collection(), this.object.uid, this.object).then(() => {
+        this.firebase.updateDoc(this.collection, this.object.uid, this.object).then(() => {
           const updateIndex = this.findIndexById(this.object.uid);
           this.list[updateIndex] = this.object;
           this.utils.snackBar('Item atualizado com sucesso!');
@@ -68,7 +73,7 @@ export abstract class FireCrud<T extends FireCrudModelAbstract> implements OnIni
       } else {
         const uid = this.firebase.createId();
         this.object.uid = uid;
-        this.firebase.setDoc(this.object.collection(), uid, this.object).then(() => {
+        this.firebase.setDoc(this.collection, uid, this.object).then(() => {
           this.list.push(this.object);
           this.utils.snackBar('Item criado com sucesso!');
           this.reloadDataClear();
@@ -92,7 +97,7 @@ export abstract class FireCrud<T extends FireCrudModelAbstract> implements OnIni
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         if (item.uid) {
-          this.firebase.deleteDoc(this.object.collection(), item.uid).then(() => {
+          this.firebase.deleteDoc(this.collection, item.uid).then(() => {
             this.list = this.list.filter(val => val.uid !== item.uid);
             this.utils.snackBar('Item excluído com sucesso!');
           }).catch(() => {

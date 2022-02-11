@@ -1,4 +1,3 @@
-export interface FireCrudModelAbstract {
-  uid?: string;
-  collection(): string;
+export class FireCrudModelAbstract {
+  uid?: string = '';
 }

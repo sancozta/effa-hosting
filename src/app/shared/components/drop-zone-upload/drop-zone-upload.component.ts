@@ -9,9 +9,9 @@ import { ImgModel } from './../../models/img.model';
 })
 export class DropZoneUploadComponent implements OnInit, OnChanges {
 
-  @Input() uid: string = '';
+  @Input() uid: string | undefined = '';
 
-  @Input() images: ImgModel[] = [];
+  @Input() images: ImgModel[] | undefined = [];
 
   @Output() update: EventEmitter<ImgModel[]> = new EventEmitter<ImgModel[]>();
 
@@ -63,19 +63,23 @@ export class DropZoneUploadComponent implements OnInit, OnChanges {
   }
 
   onAdd(file: ImgModel) {
-    if (this.images.indexOf(file) === -1) {
-      this.images.push(file);
+    if(!!this.images){
+      if (this.images.indexOf(file) === -1) {
+        this.images.push(file);
+      }
+      this.update.emit(this.images);
+      this.cdr.detectChanges();
     }
-    this.update.emit(this.images);
-    this.cdr.detectChanges();
   }
 
   remove(file: ImgModel) {
-    const i = this.images.indexOf(file);
-    if (i !== -1) {
-      this.images.splice(i, 1);
+    if(!!this.images){
+      const i = this.images.indexOf(file);
+      if (i !== -1) {
+        this.images.splice(i, 1);
+      }
+      this.update.emit(this.images);
+      this.cdr.detectChanges();
     }
-    this.update.emit(this.images);
-    this.cdr.detectChanges();
   }
 }

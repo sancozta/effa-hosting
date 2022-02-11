@@ -27,6 +27,7 @@ export class CategoryComponent extends FireCrud<Category> implements OnInit {
       utils,
       dialog,
       cdr,
+      'categorys'
     );
   }
 

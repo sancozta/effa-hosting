@@ -8,7 +8,7 @@ import { FireCrud } from '../../shared/abstracts/fire-crud.abstract';
 import { User } from '../../shared/models/user.model';
 
 @Component({
-  selector: 'app-users',
+  selector: 'mat-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
@@ -27,6 +27,7 @@ export class UsersComponent extends FireCrud<User> implements OnInit {
       utils,
       dialog,
       cdr,
+      'users'
     );
   }
 

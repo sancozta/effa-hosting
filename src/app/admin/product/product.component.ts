@@ -30,6 +30,7 @@ export class ProductComponent extends FireCrud<Product> implements OnInit {
       utils,
       dialog,
       cdr,
+      'products'
     );
   }
 
