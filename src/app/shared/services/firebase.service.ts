@@ -77,10 +77,12 @@ export class FirebaseService {
   }
 
   setDoc(collection: string, uid: string, object: any): Promise<void> {
+    Object.keys(object).forEach((k, i) => object[k] = (object[k] == undefined) ? null : object[k])
     return this.firestore.collection(collection).doc(uid).set(Object.assign({}, object));
   }
 
   updateDoc(collection: string, uid: string, object: any): Promise<void> {
+    Object.keys(object).forEach((k, i) => object[k] = (object[k] == undefined) ? null : object[k])
     return this.firestore.collection(collection).doc(uid).update(Object.assign({}, object));
   }
 

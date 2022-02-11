@@ -30,7 +30,7 @@ export class DropZoneUploadComponent implements OnInit, OnChanges {
   ngOnInit(): void { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['uid'] && changes['uid'].currentValue !== changes['uid'].previousValue && (changes['images'].currentValue === undefined || changes['images'].currentValue === null)) {
+    if (changes['images'] && (changes['images'].currentValue === undefined || changes['images'].currentValue === null)) {
       this.images = [];
     }
     this.update.emit(this.images);
@@ -53,7 +53,7 @@ export class DropZoneUploadComponent implements OnInit, OnChanges {
   }
 
   onRemove(file: File | null) {
-    if(file != null) {
+    if (file != null) {
       const i = this.files.indexOf(file);
       if (i !== -1) {
         this.files.splice(i, 1);
@@ -63,7 +63,7 @@ export class DropZoneUploadComponent implements OnInit, OnChanges {
   }
 
   onAdd(file: ImgModel) {
-    if(!!this.images){
+    if (!!this.images) {
       if (this.images.indexOf(file) === -1) {
         this.images.push(file);
       }
@@ -73,7 +73,7 @@ export class DropZoneUploadComponent implements OnInit, OnChanges {
   }
 
   remove(file: ImgModel) {
-    if(!!this.images){
+    if (!!this.images) {
       const i = this.images.indexOf(file);
       if (i !== -1) {
         this.images.splice(i, 1);

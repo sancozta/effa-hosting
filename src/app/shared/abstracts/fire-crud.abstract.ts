@@ -43,7 +43,7 @@ export abstract class FireCrud<T extends FireCrudModelAbstract> implements OnIni
   }
 
   editObject(object: T): void {
-    this.object = _.merge(this.object, object);
+    this.object = object;
     this.form = true;
   }
 
