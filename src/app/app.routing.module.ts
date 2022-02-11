@@ -11,14 +11,21 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { UsersComponent } from './admin/users/users.component';
 import { LoginComponent } from './admin/login/login.component';
 import { AuthGuard } from './shared/services/auth.guard';
+import { NotfoundComponent } from './admin/notfound/notfound.component';
+import { HomeComponent } from './pages/home/home.component';
+import { ChannelsComponent } from './pages/channels/channels.component';
 
 const routes: Routes = [
   {
-    path: 'login',
-    component: LoginComponent,
+    path: '',
+    component: HomeComponent,
   },
   {
-    path: '',
+    path: 'channels',
+    component: ChannelsComponent,
+  },
+  {
+    path: 'admin',
     component: DashboardComponent,
     canActivate: [AuthGuard],
     children: [
@@ -52,16 +59,26 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: 'report',
+        redirectTo: '/login',
         pathMatch: 'full',
       }
     ],
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: '**',
+    component: NotfoundComponent,
   },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, {
+      // enableTracing: true,
+    }),
   ],
   exports: [
     RouterModule,

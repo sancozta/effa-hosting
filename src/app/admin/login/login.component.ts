@@ -22,10 +22,12 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
     if(this.firebase.data != null) {
+      console.log(`Dados de Login Entrou no IF`);
       this.firebase.data.subscribe((data) => {
+        console.log(`Dados de Login:`, data);
         if (data) {
-          this.router.navigate(['/admin']);
-        } else {
+          this.router.navigate(['/admin/report']);
+        } else {  
           this.loading = false;
         }
       });

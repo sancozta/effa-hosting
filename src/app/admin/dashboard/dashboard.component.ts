@@ -25,48 +25,50 @@ export class DashboardComponent implements OnInit {
     {
       label: 'Relatório',
       icon: 'fas fa-chart-pie',
-      routerLink: '/report',
+      routerLink: '/admin/report',
     },
     {
       label: 'Produtos',
       icon: 'fas fa-coins',
-      routerLink: '/product',
+      routerLink: '/admin/product',
     },
     {
       label: 'Categorias',
       icon: 'fas fa-tag',
-      routerLink: '/category',
+      routerLink: '/admin/category',
     },
     {
       label: 'Usuários',
       icon: 'fas fa-users',
-      routerLink: '/users',
+      routerLink: '/admin/users',
     },
     {
       label: 'Contatos',
       icon: 'fas fa-id-card',
-      routerLink: '/contacts',
+      routerLink: '/admin/contacts',
     },
     {
       label: 'Notificações',
       icon: 'fas fa-envelope',
-      routerLink: '/notification',
+      routerLink: '/admin/notification',
     },
   ];
 
   ngOnInit() {
-    // this.firebase.data.subscribe((u) => {
-    //   console.log('TESTE_U', u);
-    //   this.firebase.getDocUser(u ? u.uid : '').subscribe((doc: User | undefined | null) => {
-    //     console.log('TESTE_DOC', doc);
-    //     if(doc) {
-    //       this.firebase.user = doc;
-    //       this.firebase.admin = doc.admin;
-    //       this.authorized = !!doc.admin;
-    //       this.loading = false;
-    //     }
-    //   });
-    // });
+    if(this.firebase.data != null) {
+      this.firebase.data.subscribe((auth) => {
+        console.log(`Dash => Usuário Logado => `, auth);
+        this.firebase.getDocUser(auth ? auth.uid : '').subscribe((doc: User | undefined | null) => {
+          console.log('Dash => Usuário Firestore => ', doc);
+          if(doc) {
+            this.firebase.user = doc;
+            this.firebase.admin = doc.admin;
+            this.authorized = !!doc.admin;
+            this.loading = false;
+          }
+        });
+      });
+    }
   }
 
   public navigate(commands: any[]): void {
