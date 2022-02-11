@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { FirebaseService } from '../../../shared/services/firebase.service';
-import { UtilsService } from '../../../shared/services/utils.service';
+import { FirebaseService } from '../../shared/services/firebase.service';
+import { UtilsService } from '../../shared/services/utils.service';
 
 @Component({
   selector: 'mat-notification',

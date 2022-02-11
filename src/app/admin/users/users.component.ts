@@ -1,11 +1,11 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
-import { FirebaseService } from '../../../shared/services/firebase.service';
-import { UtilsService } from '../../../shared/services/utils.service';
+import { FirebaseService } from '../../shared/services/firebase.service';
+import { UtilsService } from '../../shared/services/utils.service';
 
-import { FireCrud } from '../../../shared/abstracts/fire-crud.abstract';
-import { User } from '../../../shared/models/user.model';
+import { FireCrud } from '../../shared/abstracts/fire-crud.abstract';
+import { User } from '../../shared/models/user.model';
 
 @Component({
   selector: 'app-users',

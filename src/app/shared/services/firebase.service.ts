@@ -15,32 +15,23 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 export class FirebaseService {
-  data: Observable<firebase.User | null>;
+  data?: Observable<firebase.User | null>;
   user?: User;
   admin?: boolean = false;
 
   constructor(
     private fireauth: AngularFireAuth,
     private firestore: AngularFirestore,
-  ) {
+  ) { 
     this.data = fireauth.authState;
   }
 
-  loginWithGoogle(): Promise<firebase.User | null> {
-    return new Promise((resolve) => {
-      this.fireauth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
-        .then((data: firebase.auth.UserCredential) => {
-          if (!data.user) {
-            resolve(null);
-          }
-          resolve(data.user);
-        });
-    })
+  loginWithGoogle() {
+    this.fireauth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((data: firebase.auth.UserCredential) => console.log(data));
   }
 
   logout(): void {
     this.fireauth.signOut();
-    this.admin = false;
   }
 
   getCountDocs(collection: string): Observable<number> {

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FirebaseService } from '../../../shared/services/firebase.service';
-import { UtilsService } from '../../../shared/services/utils.service';
+import { FirebaseService } from '../../shared/services/firebase.service';
+import { UtilsService } from '../../shared/services/utils.service';
 
-import { Contact } from '../../../shared/models/contact.model';
+import { Contact } from '../../shared/models/contact.model';
 
 @Component({
   selector: 'mat-contacts',

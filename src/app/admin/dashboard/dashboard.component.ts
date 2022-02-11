@@ -25,46 +25,48 @@ export class DashboardComponent implements OnInit {
     {
       label: 'Relatório',
       icon: 'fas fa-chart-pie',
-      routerLink: '/admin/report',
+      routerLink: '/report',
     },
     {
       label: 'Produtos',
       icon: 'fas fa-coins',
-      routerLink: '/admin/product',
+      routerLink: '/product',
     },
     {
       label: 'Categorias',
       icon: 'fas fa-tag',
-      routerLink: '/admin/category',
+      routerLink: '/category',
     },
     {
       label: 'Usuários',
       icon: 'fas fa-users',
-      routerLink: '/admin/users',
+      routerLink: '/users',
     },
     {
       label: 'Contatos',
       icon: 'fas fa-id-card',
-      routerLink: '/admin/contacts',
+      routerLink: '/contacts',
     },
     {
       label: 'Notificações',
       icon: 'fas fa-envelope',
-      routerLink: '/admin/notification',
+      routerLink: '/notification',
     },
   ];
 
   ngOnInit() {
-    this.firebase.data.subscribe((u) => {
-      this.firebase.getDocUser(u ? u.uid : '').subscribe((doc: User | undefined | null) => {
-        if(doc) {
-          this.firebase.user = doc;
-          this.firebase.admin = doc.admin;
-          this.authorized = !!doc.admin;
-          this.loading = false;
-        }
-      });
-    });
+    // this.firebase.data.subscribe((u) => {
+    //   console.log('TESTE_U', u);
+    //   this.firebase.getDocUser(u ? u.uid : '').subscribe((doc: User | undefined | null) => {
+    //     console.log('TESTE_DOC', doc);
+    //     if(doc) {
+    //       this.firebase.user = doc;
+    //       this.firebase.admin = doc.admin;
+    //       this.authorized = !!doc.admin;
+    //       this.loading = false;
+    //     }
+    //   });
+    // });
   }
 
   public navigate(commands: any[]): void {
@@ -73,6 +75,6 @@ export class DashboardComponent implements OnInit {
 
   logout() {
     this.firebase.logout();
-    this.router.navigate(['/admin/login']);
+    this.router.navigate(['/login']);
   }
 }

@@ -1,13 +1,13 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
-import { FirebaseService } from '../../../shared/services/firebase.service';
-import { UtilsService } from '../../../shared/services/utils.service';
+import { FirebaseService } from '../../shared/services/firebase.service';
+import { UtilsService } from '../../shared/services/utils.service';
 
-import { FireCrud } from '../../../shared/abstracts/fire-crud.abstract';
-import { Category } from '../../../shared/models/category.model';
-import { Product } from '../../../shared/models/product.model';
-import { ImgModel } from '../../../shared/models/img.model';
+import { FireCrud } from '../../shared/abstracts/fire-crud.abstract';
+import { Category } from '../../shared/models/category.model';
+import { Product } from '../../shared/models/product.model';
+import { ImgModel } from '../../shared/models/img.model';
 
 @Component({
   selector: 'mat-product',

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FirebaseService } from '../../../shared/services/firebase.service';
+import { FirebaseService } from '../../shared/services/firebase.service';
 import { Product } from 'src/app/shared/models/product.model';
-import { Category } from '../../../shared/models/category.model';
-import { User } from '../../../shared/models/user.model';
+import { Category } from '../../shared/models/category.model';
+import { User } from '../../shared/models/user.model';
 
 @Component({
   selector: 'mat-report',

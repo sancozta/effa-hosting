@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { NotificationComponent } from './admin/dashboard/notification/notification.component';
-import { CategoryComponent } from './admin/dashboard/category/category.component';
-import { ContactsComponent } from './admin/dashboard/contacts/contacts.component';
-import { ProductComponent } from './admin/dashboard/product/product.component';
-import { ProfileComponent } from './admin/dashboard/profile/profile.component';
-import { ReportComponent } from './admin/dashboard/report/report.component';
+import { NotificationComponent } from './admin/notification/notification.component';
+import { CategoryComponent } from './admin/category/category.component';
+import { ContactsComponent } from './admin/contacts/contacts.component';
+import { ProductComponent } from './admin/product/product.component';
+import { ProfileComponent } from './admin/profile/profile.component';
+import { ReportComponent } from './admin/report/report.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { UsersComponent } from './admin/dashboard/users/users.component';
+import { UsersComponent } from './admin/users/users.component';
 import { LoginComponent } from './admin/login/login.component';
+import { AuthGuard } from './shared/services/auth.guard';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'report',
