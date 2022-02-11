@@ -44,9 +44,6 @@
           <mat-hint class="hint-invalid" *ngIf="submitted && !object.email">Nome é obrigatório.</mat-hint>
         </mat-form-field>
       </div>
-    </div>
-
-    <div class="row">
       <div class="col">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Email</mat-label>
@@ -64,9 +61,6 @@
           <mat-hint class="hint-invalid" *ngIf="submitted && !object.phone">Telefone é obrigatório.</mat-hint>
         </mat-form-field>
       </div>
-    </div>
-
-    <div class="row">
       <div class="col">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>CPF</mat-label>
@@ -76,15 +70,12 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col">
-        <button class="btn-save" mat-flat-button (click)="saveObject()">Salvar</button>
-      </div>
-    </div>
-
-    <div class="row mt-2">
+    <div class="row mt-4">
       <div class="col">
         <button class="btn-cancel" mat-flat-button (click)="hideForm()">Cancelar</button>
+      </div>
+      <div class="col">
+        <button class="btn-save" mat-flat-button (click)="saveObject()">Salvar</button>
       </div>
     </div>
 

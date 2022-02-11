@@ -49,25 +49,19 @@
     <div class="row mt-3">
       <div class="col">
         <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Key</mat-label>
-          <input required autofocus matInput placeholder="Digite a key..." id="key" [(ngModel)]="object.key">
-          <mat-hint class="hint-invalid" *ngIf="submitted && !object.key">Key é obrigatória.</mat-hint>
-        </mat-form-field>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col">
-        <mat-form-field appearance="outline" class="w-100">
           <mat-label>Título</mat-label>
           <input required autofocus matInput placeholder="Digite o título..." id="title" [(ngModel)]="object.title">
           <mat-hint class="hint-invalid" *ngIf="submitted && !object.title">Título é obrigatório.</mat-hint>
         </mat-form-field>
       </div>
-    </div>
-
-    <div class="row">
-      <div class="col">
+      <div class="col-3">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Key</mat-label>
+          <input required autofocus matInput placeholder="Digite a key..." id="key" [(ngModel)]="object.key">
+          <mat-hint class="hint-invalid" *ngIf="submitted && !object.key">Key é obrigatória.</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="col-2">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Ordem</mat-label>
           <input required autofocus matInput placeholder="Digite a ordem..." id="order" [(ngModel)]="object.order">
@@ -86,6 +80,9 @@
             <div class="col">
               <mat-radio-button [value]="'BUSINESS'">Negocios</mat-radio-button>
             </div>
+            <div class="col">
+              <mat-radio-button [value]="'EDUCATION'">Educação</mat-radio-button>
+            </div>
           </div>
           <div class="row">
             <div class="col">
@@ -93,11 +90,6 @@
             </div>
             <div class="col">
               <mat-radio-button [value]="'ENTERTAINMENT'">Entretenimento</mat-radio-button>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <mat-radio-button [value]="'EDUCATION'">Educação</mat-radio-button>
             </div>
             <div class="col">
               <mat-radio-button [value]="'TECHNOLOGY'">Tecnologia</mat-radio-button>
@@ -109,13 +101,10 @@
 
     <div class="row mt-4">
       <div class="col">
-        <button class="btn-save" mat-flat-button (click)="saveObject()">Salvar</button>
-      </div>
-    </div>
-
-    <div class="row mt-2">
-      <div class="col">
         <button class="btn-cancel" mat-flat-button (click)="hideForm()">Cancelar</button>
+      </div>
+      <div class="col">
+        <button class="btn-save" mat-flat-button (click)="saveObject()">Salvar</button>
       </div>
     </div>
 

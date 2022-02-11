@@ -33,11 +33,11 @@ export class AdminMenuComponent implements OnInit {
     return user != null && user.email != null ? user.email : '';
   }
 
-  getFisrtCharEmail(text: string): string {
-    return this.utilsService.getFisrtCharEmail(text);
+  getName(user: firebase.User | null): string {
+    return user != null && user.displayName != null ? user.displayName : '';
   }
 
-  getFisrtPartEmail(text: string): string {
-    return this.utilsService.getFisrtPartEmail(text);
+  getFisrtCharEmail(text: string): string {
+    return this.utilsService.getFisrtCharEmail(text);
   }
 }

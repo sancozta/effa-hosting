@@ -8,8 +8,10 @@
       <ng-content select="[slot=list]"></ng-content>
     </div>
 
-    <div *ngIf="enableForm" class="col-3 box-form">
-      <ng-content select="[slot=form]"></ng-content>
+    <div *ngIf="enableForm" class="box-form">
+      <div class="box-form-shadow">
+        <ng-content select="[slot=form]"></ng-content>
+      </div>
     </div>
 
   </div>

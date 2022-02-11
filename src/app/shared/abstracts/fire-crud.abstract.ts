@@ -1,4 +1,4 @@
-import { OnInit, ChangeDetectorRef, Component, Inject } from '@angular/core';
+import { OnInit, ChangeDetectorRef, Component, Inject, HostListener } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import * as _ from 'lodash';
 
@@ -43,13 +43,11 @@ export abstract class FireCrud<T extends FireCrudModelAbstract> implements OnIni
   }
 
   editObject(object: T): void {
-    console.log(`Object => `, this.collection);
-    // this.object = Object.assign(this.object, object);
     this.object = _.merge(this.object, object);
-    console.log(`Object => `, this.object);
     this.form = true;
   }
 
+  @HostListener('document:keydown.escape')
   hideForm(): void {
     this.form = false;
     this.submitted = false;
@@ -59,7 +57,6 @@ export abstract class FireCrud<T extends FireCrudModelAbstract> implements OnIni
 
   saveObject(): void {
     this.submitted = true;
-    console.log(`Collection => `, this.collection)
     if (this.isValid(this.object)) {
       if (this.object.uid) {
         this.firebase.updateDoc(this.collection, this.object.uid, this.object).then(() => {

@@ -12,8 +12,7 @@ export class AuthGuard implements CanActivate {
   ) { }
 
   async canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
-    const user = await this.fireauth.currentUser;
-    console.log(`canActivate => user => ${user}`)
+    const user = await this.fireauth.authState;
     const isLoggedIn = !!user;
     if (!isLoggedIn) {
       console.log('AuthGuardErrorConsole')

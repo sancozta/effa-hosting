@@ -1,10 +1,10 @@
 <div class="content-menu-slide">
-  <a class="box-profile" (click)="navigate(['/admin/profile'])" routerLink="/admin/profile" routerLinkActive="active">
+  <a class="box-profile">
     <div class="profile-img">
-      <span>{{ getFisrtCharEmail(getEmail(user)) }}</span>
+      <span>{{ getFisrtCharEmail(getName(user)) }}</span>
     </div>
     <div class="profile-text">
-      <span class="profile-text-title">{{ getFisrtPartEmail(getEmail(user)) }}</span>
+      <span class="profile-text-title">{{ getName(user) }}</span>
       <span class="profile-text-subtitle">{{ getEmail(user) }}</span>
     </div>
   </a>
@@ -24,6 +24,12 @@
         <a routerLink="/" routerLinkActive="active">
           <i class="fas fa-external-link-alt"></i>
           <label>Site</label>
+        </a>
+      </li>
+      <li>
+        <a (click)="navigate(['/admin/profile'])" routerLink="/admin/profile">
+          <i class="fas fa-user"></i>
+          <label>Meus Dados</label>
         </a>
       </li>
       <li>
